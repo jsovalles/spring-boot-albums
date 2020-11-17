@@ -1,6 +1,7 @@
 package com.wolox.albums.dao.impl;
 
 import com.wolox.albums.dao.IAlbumsDAO;
+import com.wolox.albums.dao.templates.albums.Album;
 import com.wolox.albums.dao.templates.photos.Photo;
 import com.wolox.albums.dao.templates.users.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,15 @@ public class AlbumsDAO implements IAlbumsDAO {
     @Override
     public List<Photo> listPhotos() {
         return Arrays.asList(restTemplate.getForObject(uri+"/photos", Photo[].class));
+    }
+
+    @Override
+    public List<Album> listAlbums() {
+        return Arrays.asList(restTemplate.getForObject(uri+"/albums", Album[].class));
+    }
+
+    @Override
+    public List<Album> listAlbumsFromUser(String userId) {
+        return Arrays.asList(restTemplate.getForObject(uri+"/users/" + userId + "/albums", Album[].class));
     }
 }

@@ -1,6 +1,7 @@
 package com.wolox.albums.service.impl;
 
 import com.wolox.albums.dao.IAlbumsDAO;
+import com.wolox.albums.dao.templates.albums.Album;
 import com.wolox.albums.dao.templates.photos.Photo;
 import com.wolox.albums.dao.templates.users.User;
 import com.wolox.albums.service.IAlbumsService;
@@ -23,5 +24,15 @@ public class AlbumsServiceImpl implements IAlbumsService {
     @Override
     public List<Photo> listPhotos() {
         return dao.listPhotos();
+    }
+
+    @Override
+    public List<Album> listAlbums() {
+        return dao.listAlbums();
+    }
+
+    @Override
+    public List<Album> listAlbumsFromUser(String userId) {
+        return dao.listAlbumsFromUser(userId);
     }
 }
