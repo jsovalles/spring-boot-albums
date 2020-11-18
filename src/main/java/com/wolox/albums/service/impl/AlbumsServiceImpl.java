@@ -8,6 +8,7 @@ import com.wolox.albums.service.IAlbumsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -34,5 +35,20 @@ public class AlbumsServiceImpl implements IAlbumsService {
     @Override
     public List<Album> listAlbumsFromUser(String userId) {
         return dao.listAlbumsFromUser(userId);
+    }
+
+    @Override
+    public List<Photo> listPhotosFromUser(String userId) {
+
+        List<Album> albums = dao.listAlbumsFromUser(userId);
+
+        List<Photo> photosFromUser = new ArrayList<>();
+
+        albums.forEach(album -> {
+            Photo photo = dao.getPhotoFromUser(album.getId()).get(0);
+            photosFromUser.add(photo);
+        });
+
+        return photosFromUser;
     }
 }

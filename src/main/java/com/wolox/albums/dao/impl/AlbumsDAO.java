@@ -40,4 +40,9 @@ public class AlbumsDAO implements IAlbumsDAO {
     public List<Album> listAlbumsFromUser(String userId) {
         return Arrays.asList(restTemplate.getForObject(uri+"/users/" + userId + "/albums", Album[].class));
     }
+
+    @Override
+    public List<Photo> getPhotoFromUser(int id) {
+        return Arrays.asList(restTemplate.getForObject(uri+"/photos?id=" + id, Photo[].class));
+    }
 }

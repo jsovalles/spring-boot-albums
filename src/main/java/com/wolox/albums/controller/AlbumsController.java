@@ -51,4 +51,12 @@ public class AlbumsController<T> {
 
         return albums;
     }
+
+    @GetMapping("/users/{user-id}/photos")
+    public List<Photo> listPhotosFromUser(@PathVariable(name = "user-id") String userId){
+
+        List<Photo> photo = srv.listPhotosFromUser(userId);
+
+        return photo;
+    }
 }

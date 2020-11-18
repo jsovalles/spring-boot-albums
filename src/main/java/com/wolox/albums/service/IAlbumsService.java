@@ -14,4 +14,6 @@ public interface IAlbumsService {
     List<Album> listAlbums();
 
     List<Album> listAlbumsFromUser(String userId);
+
+    List<Photo> listPhotosFromUser(String userId);
 }
