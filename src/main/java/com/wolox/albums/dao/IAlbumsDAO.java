@@ -17,4 +17,5 @@ public interface IAlbumsDAO {
     List<Album> listAlbumsFromUser(String userId);
 
     List<Photo> getPhotoFromUser(int id);
+
 }
