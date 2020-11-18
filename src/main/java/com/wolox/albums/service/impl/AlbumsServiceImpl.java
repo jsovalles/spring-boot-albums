@@ -72,4 +72,12 @@ public class AlbumsServiceImpl implements IAlbumsService {
 
         rolesDAO.save(permission);
     }
+
+    @Override
+    public void updateUserPermissions(Permission permission) {
+
+        logic.updateUserPermissionBusinessLogic(permission);
+
+        rolesDAO.save(permission);
+    }
 }

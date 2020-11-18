@@ -29,4 +29,11 @@ public class AlbumsLogic {
         if (permissionsDAO.existsByUserIdAndAlbumId(permission.getUserId(), permission.getAlbumId()))
             throw new AlbumsException("The current permission between the album and the user already exist");
     }
+
+    public void updateUserPermissionBusinessLogic(Permission permission) {
+
+        if (!permissionsDAO.existsByUserIdAndAlbumId(permission.getUserId(),permission.getAlbumId()))
+            throw new AlbumsException("The current Role for the Album and user doesn't exist");
+
+    }
 }

@@ -19,4 +19,6 @@ public interface IAlbumsService {
     List<Photo> listPhotosFromUser(String userId);
 
     void createUserPermissions(Permission permission);
+
+    void updateUserPermissions(Permission permission);
 }

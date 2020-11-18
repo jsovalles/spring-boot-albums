@@ -62,4 +62,10 @@ public class AlbumsController<T> {
     public void createUserPermissions(@RequestBody Permission permission) {
         srv.createUserPermissions(permission);
     }
+
+    @PutMapping("/permissions")
+    public void updateUserPermissions(@RequestBody Permission permission) {
+
+        srv.updateUserPermissions(permission);
+    }
 }
