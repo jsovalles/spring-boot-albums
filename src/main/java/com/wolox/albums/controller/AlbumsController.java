@@ -3,6 +3,7 @@ package com.wolox.albums.controller;
 import com.wolox.albums.dao.entity.Permission;
 import com.wolox.albums.dao.templates.albums.Album;
 import com.wolox.albums.dao.templates.photos.Photo;
+import com.wolox.albums.dao.templates.posts.Comment;
 import com.wolox.albums.dao.templates.users.User;
 import com.wolox.albums.service.IAlbumsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,11 +71,20 @@ public class AlbumsController<T> {
     }
 
     @GetMapping("/permissions/albums/{album-id}")
-    public List<User> listUsersWithAlbumPermissions(@PathVariable(name = "album-id") int albumId, @RequestParam(name = "role") String role){
+    public List<User> listUsersWithAlbumPermissions(@PathVariable(name = "album-id") int albumId, @RequestParam(name = "role", required = false) String role){
 
         List<User> users = srv.listUsersWithAlbumPermissions(albumId, role);
 
         return users;
+
+    }
+
+    @GetMapping("/comments")
+    public List<Comment> listUserComments(@RequestParam(name = "name", required = false) String name, @RequestParam(name = "userId", required = false) String userId){
+
+        List<Comment> comments = srv.listUserComments(name,userId);
+
+        return comments;
 
     }
 }

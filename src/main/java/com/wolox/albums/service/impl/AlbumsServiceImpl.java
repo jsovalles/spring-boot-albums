@@ -5,6 +5,8 @@ import com.wolox.albums.dao.IPermissionsDAO;
 import com.wolox.albums.dao.entity.Permission;
 import com.wolox.albums.dao.templates.albums.Album;
 import com.wolox.albums.dao.templates.photos.Photo;
+import com.wolox.albums.dao.templates.posts.Comment;
+import com.wolox.albums.dao.templates.posts.Post;
 import com.wolox.albums.dao.templates.users.User;
 import com.wolox.albums.service.IAlbumsService;
 import com.wolox.albums.service.logic.AlbumsLogic;
@@ -96,5 +98,23 @@ public class AlbumsServiceImpl implements IAlbumsService {
         });
 
         return users;
+    }
+
+    @Override
+    public List<Comment> listUserComments(String name, String userId) {
+        if (name != null)
+            return albumsDAO.getCommentsByName(name);
+        else {
+            List<Post> postsFromUser = albumsDAO.getUserPosts(userId);
+
+            List<Comment> comments = new ArrayList<>();
+
+            postsFromUser.forEach(post -> {
+                Comment comment = albumsDAO.getCommentsByPostId(post.getId());
+                comments.add(comment);
+            });
+            return comments;
+        }
+
     }
 }
