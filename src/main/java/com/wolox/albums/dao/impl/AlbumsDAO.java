@@ -3,6 +3,8 @@ package com.wolox.albums.dao.impl;
 import com.wolox.albums.dao.IAlbumsDAO;
 import com.wolox.albums.dao.templates.albums.Album;
 import com.wolox.albums.dao.templates.photos.Photo;
+import com.wolox.albums.dao.templates.posts.Comment;
+import com.wolox.albums.dao.templates.posts.Post;
 import com.wolox.albums.dao.templates.users.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -44,5 +46,25 @@ public class AlbumsDAO implements IAlbumsDAO {
     @Override
     public List<Photo> getPhotoFromUser(int id) {
         return Arrays.asList(restTemplate.getForObject(uri+"/photos?id=" + id, Photo[].class));
+    }
+
+    @Override
+    public User getUser(int userId) {
+        return restTemplate.getForObject(uri + "/users/" + userId, User.class);
+    }
+
+    @Override
+    public List<Comment> getCommentsByName(String name) {
+        return Arrays.asList(restTemplate.getForObject(uri+"/comments?name=" + name, Comment[].class));
+    }
+
+    @Override
+    public List<Post> getUserPosts(String userId) {
+        return Arrays.asList(restTemplate.getForObject(uri+"/posts?userId=" + userId, Post[].class));
+    }
+
+    @Override
+    public Comment getCommentsByPostId(int id) {
+        return Arrays.asList(restTemplate.getForObject(uri+"/comments?postId=" + id, Comment[].class)).get(0);
     }
 }
