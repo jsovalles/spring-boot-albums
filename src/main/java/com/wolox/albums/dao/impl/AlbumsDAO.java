@@ -45,4 +45,9 @@ public class AlbumsDAO implements IAlbumsDAO {
     public List<Photo> getPhotoFromUser(int id) {
         return Arrays.asList(restTemplate.getForObject(uri+"/photos?id=" + id, Photo[].class));
     }
+
+    @Override
+    public User getUser(int userId) {
+        return restTemplate.getForObject(uri + "/users/" + userId, User.class);
+    }
 }

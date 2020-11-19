@@ -36,4 +36,11 @@ public class AlbumsLogic {
             throw new AlbumsException("The current Role for the Album and user doesn't exist");
 
     }
+
+    public void listUsersWithAlbumPermissionsBusinessLogic(List<Permission> list) {
+
+        if (list==null || list.isEmpty())
+            throw new AlbumsException("The current Album or role doesn't have associated users");
+
+    }
 }

@@ -68,4 +68,13 @@ public class AlbumsController<T> {
 
         srv.updateUserPermissions(permission);
     }
+
+    @GetMapping("/permissions/albums/{album-id}")
+    public List<User> listUsersWithAlbumPermissions(@PathVariable(name = "album-id") int albumId, @RequestParam(name = "role") String role){
+
+        List<User> users = srv.listUsersWithAlbumPermissions(albumId, role);
+
+        return users;
+
+    }
 }

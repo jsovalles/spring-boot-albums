@@ -21,4 +21,6 @@ public interface IAlbumsService {
     void createUserPermissions(Permission permission);
 
     void updateUserPermissions(Permission permission);
+
+    List<User> listUsersWithAlbumPermissions(int albumId, String role);
 }

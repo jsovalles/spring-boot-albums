@@ -25,7 +25,7 @@ public class AlbumsServiceImpl implements IAlbumsService {
     IAlbumsDAO albumsDAO;
 
     @Autowired
-    IPermissionsDAO rolesDAO;
+    IPermissionsDAO permissionsDAO;
 
     @Autowired
     AlbumsLogic logic;
@@ -70,7 +70,7 @@ public class AlbumsServiceImpl implements IAlbumsService {
 
         logic.createUserPermissionBusinessLogic(permission);
 
-        rolesDAO.save(permission);
+        permissionsDAO.save(permission);
     }
 
     @Override
@@ -78,6 +78,23 @@ public class AlbumsServiceImpl implements IAlbumsService {
 
         logic.updateUserPermissionBusinessLogic(permission);
 
-        rolesDAO.save(permission);
+        permissionsDAO.save(permission);
+    }
+
+    @Override
+    public List<User> listUsersWithAlbumPermissions(int albumId, String role) {
+
+        List<Permission> list = permissionsDAO.findAllUsersByAlbumIdAndRole(albumId, role);
+
+        logic.listUsersWithAlbumPermissionsBusinessLogic(list);
+
+        List<User> users = new ArrayList<>();
+
+        list.forEach(permission -> {
+            User user = albumsDAO.getUser(permission.getUserId());
+            users.add(user);
+        });
+
+        return users;
     }
 }
