@@ -49,6 +49,10 @@ listPhotosFromUser (GET) - http://localhost:8080/albums/v0/users/4/photos
 
 Si en el proceso de creación se observa que el usuario tiene el álbum propio genera un error; de igual forma si se trata de generar el mismo permiso entre el usuario y el álbum.
 
+Los permisos existentes son solamente dos:
+-	1 (READ_ONLY)
+-	2 (WRITE_READ)
+
 ```
 createUserPermissions (POST) - http://localhost:8080/albums/v0/permissions
 
@@ -65,6 +69,10 @@ Body:
 **updateUserPermissions:** Servicio web encargado de actualizar los permisos entre un usuario y un álbum el cual no sea propio
 
 Si en el proceso de actualización se observa que el permiso no existe en la base de datos se indica como un error que se debe primero crear este recurso de permisos.
+
+Los permisos existentes son solamente dos:
+-	1 (READ_ONLY)
+-	2 (WRITE_READ)
 
 ```
 updateUserPermissions (PUT) - http://localhost:8080/albums/v0/permissions
